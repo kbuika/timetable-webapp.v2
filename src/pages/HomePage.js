@@ -3,23 +3,23 @@ import Scheduler from "devextreme-react/scheduler";
 import CustomStore from "devextreme/data/custom_store";
 import "whatwg-fetch";
 
-function getData(_, requestOptions) {
-  const PUBLIC_KEY = "AIzaSyBxy0PL1Fom5inqmgTbFvwANrhsxFDCwOs",
-    CALENDAR_ID = "7tf2trs0b98hjhp8mr9uqnlavo@group.calendar.google.com";
-  const dataUrl = [
+function getLessons(_, requestOptions) {
+  const PUBLIC_KEY = process.env.REACT_APP_GOOGLE_PUBLIC_KEY,
+    CALENDAR_ID = process.env.REACT_APP_CALENDAR_ID;
+  const lessonsUrl = [
     "https://www.googleapis.com/calendar/v3/calendars/",
     CALENDAR_ID,
     "/events?key=",
     PUBLIC_KEY,
   ].join("");
 
-  return fetch(dataUrl, requestOptions)
+  return fetch(lessonsUrl, requestOptions)
     .then((response) => response.json())
     .then((data) => data.items);
 }
 
 const dataSource = new CustomStore({
-  load: (options) => getData(options, { showDeleted: false }),
+  load: (options) => getLessons(options, { showDeleted: false }),
 });
 
 const currentDate = new Date(2020, 8, 21);
