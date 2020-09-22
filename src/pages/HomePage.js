@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Scheduler from "devextreme-react/scheduler";
 import CustomStore from "devextreme/data/custom_store";
 import "whatwg-fetch";
@@ -25,12 +25,14 @@ const dataSource = new CustomStore({
 const currentDate = new Date(2020, 8, 21);
 const views = ["day", "workWeek"];
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <div className="long-title">
-          <h3>3N TimeTable</h3>
+      <>
+        <div className="title">
+          <h3>
+            <u>3N TimeTable</u>
+          </h3>
         </div>
         <Scheduler
           dataSource={dataSource}
@@ -47,7 +49,7 @@ class App extends React.Component {
           textExpr="summary"
           timeZone="Africa/Nairobi"
         />
-      </React.Fragment>
+      </>
     );
   }
 }
