@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+// prebuild table component
 import Scheduler from "devextreme-react/scheduler";
+// data handler
 import CustomStore from "devextreme/data/custom_store";
 import "whatwg-fetch";
 
+// function to fetch the events from the calendar
 function getLessons(_, requestOptions) {
   const PUBLIC_KEY = process.env.REACT_APP_GOOGLE_PUBLIC_KEY,
     CALENDAR_ID = process.env.REACT_APP_CALENDAR_ID;
@@ -18,10 +21,12 @@ function getLessons(_, requestOptions) {
     .then((data) => data.items);
 }
 
+// data handler
 const dataSource = new CustomStore({
   load: (options) => getLessons(options, { showDeleted: false }),
 });
 
+// scheduler preferences
 const currentDate = new Date(2020, 8, 21);
 const views = ["day", "workWeek"];
 

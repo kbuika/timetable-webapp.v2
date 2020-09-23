@@ -2,6 +2,8 @@
 
 A timetable webapp that fetches lessons from google calendar and displays the events on the webapp.
 
+![Website Image](https://github.com/kibuikaCodes/timetable-webapp.v2/blob/master/src/resources/images/timeseat-web-img.JPG)
+
 ![Google Calendar Image](https://github.com/kibuikaCodes/timetable-webapp.v2/blob/master/src/resources/images/google-calendar-img.JPG)
 
 ## Getting Started

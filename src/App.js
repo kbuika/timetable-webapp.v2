@@ -10,6 +10,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/3n-timetable" component={HomePage} />
+        {/* shows the 404 page when route is not valid  */}
         <Route path="*" component={NoMatch} />
       </Switch>
     </Router>
