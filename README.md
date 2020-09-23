@@ -2,11 +2,14 @@
 
 A timetable webapp that fetches lessons from google calendar and displays the events on the webapp.
 
-![Netflix Clone Image](https://github.com/kibuikaCodes/portfolio/blob/master/src/images/netflix-clone.png)
+![Google Calendar Image](https://github.com/kibuikaCodes/timetable-webapp.v2/blob/master/src/resources/images/google-calendar-img.JPG)
 
 ## Getting Started
 
 1. Clone the repository
+
+- Delete the lock files and NODE_Modules if present
+
 2. Install dependencies
 
 ```bash
