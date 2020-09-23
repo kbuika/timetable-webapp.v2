@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+      - uses: actions/checkout@master
       - name: Install Dependencies
-        run: yarn install
+      - run: yarn install
       - name: Build
-        run: yarn build
+      - run: yarn build
         env:
           REACT_APP_GOOGLE_PUBLIC_KEY: ${{ secrets.REACT_APP_GOOGLE_PUBLIC_KEY }}
           REACT_APP_CALENDAR_ID: ${{ secrets.REACT_APP_CALENDAR_ID}}
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@master
         with:
           name: build
           path: build
@@ -32,11 +32,11 @@ jobs:
       - name: Checkout Repo
       - uses: actions/checkout@master
       - name: Download Artifact
-        uses: actions/download-artifact@master
+      - uses: actions/download-artifact@master
         with:
           name: build
       - name: Deploy
-        uses: w9jds/firebase-action@master
+      - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
