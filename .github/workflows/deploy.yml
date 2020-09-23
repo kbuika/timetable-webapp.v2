@@ -5,13 +5,38 @@ on:
     branches: [master]
 
 jobs:
-  deploy:
+  build:
+    name: Create an Optimized Build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+        env:
+          REACT_APP_GOOGLE_PUBLIC_KEY: ${{ secrets.REACT_APP_GOOGLE_PUBLIC_KEY }}
+          REACT_APP_CALENDAR_ID: ${{ secrets.REACT_APP_CALENDAR_ID}}
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: build
+
+  deploy:
+    name: Deploy to Firebase
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
       - uses: actions/checkout@master
-      - run: yarn install
-      - run: yarn build
-      - uses: w9jds/firebase-action@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: build
+      - name: Deploy
+        uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
