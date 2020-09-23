@@ -1,4 +1,4 @@
-name: Firebase Continuous Deployment
+name: Firebase Continuous Deployment.
 
 on:
   push:
@@ -11,6 +11,9 @@ jobs:
       - uses: actions/checkout@master
       - run: yarn install
       - run: yarn build
+        env:
+          REACT_APP_GOOGLE_PUBLIC_KEY: ${{ secrets.REACT_APP_GOOGLE_PUBLIC_KEY }}
+          REACT_APP_CALENDAR_ID: ${{ secrets.REACT_APP_CALENDAR_ID}}
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
